@@ -32,6 +32,7 @@
     <script>
     var chk = false;
     var lagn = function(n,my_a) {
+      // This function should return array which lags my_a by n
       // I should get first n
       var front_a = my_a.slice(0,n);
       // I should remove last n
@@ -39,17 +40,26 @@
       var lagn_a = front_a.concat(back_a);
       return lagn_a;
     }
+
+    var getcol = function(n,csv_a) {
+      // This function should return col-n from 2D array.
+      var mycol = [];
+      csv_a.forEach(function(row){
+        mycol.push(row[n]);
+        row;
+        mycol;
+      }
+      return mycol;
+    }
+
     // I should use cpasc_a to store dates,prices,pct-deltas
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
       if (error) throw error;
-      for (rownum = (csv_a.length-1); rownum >= 0; rownum--) {
-        cpasc_a.push({udate:csv_a[rownum].Date, cp:csv_a[rownum].Close});
-      }
-      for (i = 1; i < (cpasc_a.length); i++) {
-        var row     = cpasc_a[i];
-        row;
-        }});
+      var col0 = getcol(0,vsv_a);
+      col0;
+
+    }
 
     </script>
   </body>
