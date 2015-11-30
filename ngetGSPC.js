@@ -14,4 +14,18 @@ var options = {
   path: '/table.csv?s=FB'
 };
 
+callback = function(response) {
+  var str = '';
+  /* Hover debugger over response.
+     I should see inside it. */
+  response;
+  
+  response.on('end', function () {
+    console.log('response now on end.');
+  });
+
+}
+
+http.request(options, callback).end();
+
 console.log('ngetGSPC.js done for now.')
