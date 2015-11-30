@@ -41,11 +41,11 @@
       return lagn_a;
     };
 
-    var getcol = function(n,csv_a) {
-      // This function should return col-n from 2D array.
+    var getcol = function(key,csv_a) {
+      // This function should return col-n from array of obj.
       var mycol = [];
       csv_a.forEach(function(row){
-        mycol.push(row[n]);
+        mycol.push(row[key]);
         row;
         mycol;
       });
@@ -56,7 +56,7 @@
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
       if (error) throw error;
-      var col0 = getcol(0,vsv_a);
+      var col0 = getcol(0,csv_a);
       col0;
 
     });
