@@ -56,13 +56,13 @@
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
       if (error) throw error;
+      // Yahoo gives the data by date descending.
+      // I should order it    by date ascending.
+      csv_a.reverse();
       // I should get the 'Close' column from my CSV
       var cp_s_a = getcol('Close',csv_a);
       // I should convert from str to number
       var cp_a = cp_s_a.map(function(str){return +str;});
-      // Yahoo gives the data by date descending.
-      // I should order it    by date ascending.
-      cp_a.reverse();
       cp_a;
 
     });
