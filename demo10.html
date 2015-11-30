@@ -59,7 +59,10 @@
       // I should get the 'Close' column from my CSV
       var cp_s_a = getcol('Close',csv_a);
       // I should convert from str to number
-      var cp_a = cp_s_a.map(function(str){return str;});
+      var cp1_a = cp_s_a.map(function(str){return +str;});
+      // Yahoo gives data by date descending
+      // I should order   by date ascending
+      var cp_a = cp1_a.reverse();
       cp_a;
 
     });
