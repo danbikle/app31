@@ -12,8 +12,8 @@ var fs   = require('fs');
 
 var options = {
   host: 'ichart.finance.yahoo.com',
-  // path: '/table.csv?s=%5EGSPC'
-  path: '/table.csv?s=SQ'
+  path: '/table.csv?s=%5EGSPC'
+  // path: '/table.csv?s=SQ'
 };
 
 callback = function(response) {

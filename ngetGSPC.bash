@@ -6,9 +6,9 @@
 
 . ~/app31/app31env.bash
 
-cd ~/app31/
+cd ~/app31/csv/
 
-node ngetGSPC.js
+node ../ngetGSPC.js
 
 # I should see new GSPC prices in ~/app31/csv/GSPC.csv
 
