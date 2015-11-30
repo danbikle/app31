@@ -56,8 +56,9 @@
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
       if (error) throw error;
-      var col0 = getcol(0,csv_a);
-      col0;
+      // I should get the 'Close' column from my CSV
+      var cp_a = getcol('Close',csv_a);
+      cp_a;
 
     });
 
