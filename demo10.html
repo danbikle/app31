@@ -30,6 +30,27 @@
   <body>
     <h1>app31/demo10</h1>
     <script>
+    var chk = false;
+    var lagn = function(n,my_a) {
+      var lagn_a = [], front = [];
+      for (i = 0; (i<n); i++) {
+        front_a.append(my_a[i]);
+        front_a;
+      }
+      chk = (front_a.length() == n); // should be true
+
+      // var lagn_a should be front + my_a;
+      for (i = 0; (i<n); i++) {lagn_a.append(front_a[i]);}
+      lagn_a;
+      chk = (lagn_a.length() == front_a.length()); // should be true
+      for (i = 0; (i<(my_a-n)); i++) {lagn_a.append(my_a[i]);}
+      lagn_a;
+      chk = (lagn_a.length() == my_a.length()); // should be true
+      return lagn_a;
+    }
+    var a_a = lagn(4,[1,2,3,4,5,6,7,8,9]);
+    a_a;
+    chk = (a_a == [1,2,3,4,1,2,3,4,9]); // should be true
     // I should use cpasc_a to store dates,prices,pct-deltas
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
