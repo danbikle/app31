@@ -30,6 +30,8 @@
   <body>
     <h1>app31/demo10</h1>
     <script>
+    // I should use cpasc_a to store dates,prices,pct-deltas
+    var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
       if (error) throw error;
       for (rownum = (csv_a.length-1); rownum >= 0; rownum--) {
