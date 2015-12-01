@@ -67,8 +67,9 @@
       // I should order it    by date ascending.
       csv_a.reverse()
       // I should use two integers to specify my training data:
-      var train_end   = csv_a.length - 252 // 1 yr ago
-      var train_start = train_end - 252*10 // 10 yrs
+      var train_end   = csv_a.length - 252  // 1 yr ago
+      var train_size  = 252*10              // 10 yrs
+      var train_start = train_end - train_size
       csv_train_a = csv_a.slice(train_start,train_end) 
 
       // I should get array of closing prices
@@ -107,7 +108,8 @@
       likely higher = better but slower: */
       opts.ensemble_size = 20; 
       var train_data  = [];
-      for(i=0;i<pctlag1;i++){
+      var train_length = pctlag1.length
+      for(i=0;i<train_size;i++){
 //debug
         // var obsv_v = new convnetjs.Vol(1,1,fnum,0.0)
         var obsv_v = new convnetjs.Vol(1,1,1,0.0)
@@ -117,6 +119,7 @@
         train_data
       }
       train_data
+      'done'
     })
 
     </script>
