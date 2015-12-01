@@ -85,6 +85,10 @@
       train_median    = d3.median(pctlead);
       train_median
 
+      // I should create an array of 2 labels from train_median
+      var labels = pctlead.map(function(x){if (x<train_median) return 0 else return 1;})
+      labels
+
     })
 
     </script>
