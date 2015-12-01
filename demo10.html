@@ -115,14 +115,14 @@
       in train/validation fold splits. Here, 0.7 means 70% */
       opts.train_ratio = 0.7 
       // number of folds to evaluate per candidate:
-      opts.num_folds = 1 
+      opts.num_folds = 10
       // number of candidates to evaluate in parallel:
-      opts.num_candidates = 40
+      opts.num_candidates = 10
       // number of epochs to make through data per fold
-      opts.num_epochs = 20
+      opts.num_epochs = 50
       /* how many nets to average in the end for prediction? 
       likely higher = better but slower: */
-      opts.ensemble_size = 16
+      opts.ensemble_size = 8
       // I should convert my data into magicnet format which is a collection of Vol objects.
       var train_data   = []
       for(i=0;i<train_size;i++){
@@ -161,12 +161,16 @@
         // JSON of my magicNet might be useful later:
         var mnjson   = magicNet.toJSON()
         var mnjson_s = JSON.stringify(mnjson)
+        var putjson_here = d3.select('#json1')
+        putjson_here.text(mnjson_s)
         'finishedBatch'
       }
 
       'd3.csv done'
     })
-
+    
     </script>
+    <h2>Some MagicNet JSON:</h2>
+    <pre><code id='json1'></code></pre>
   </body>
 </html>
