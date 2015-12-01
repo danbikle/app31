@@ -67,7 +67,7 @@
       // I should order it    by date ascending.
       csv_a.reverse()
       // I should use two integers to specify my training data:
-      var train_end   = cp_a.length - 252  // 1 yr ago
+      var train_end   = csv_a.length - 252 // 1 yr ago
       var train_start = train_end - 252*10 // 10 yrs
       csv_train_a = csv_a.slice(train_start,train_end) 
 
