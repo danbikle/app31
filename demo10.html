@@ -150,10 +150,10 @@
         var predictions = []
         for (i=0;i<oos_size;i++){
           var tstv  = new convnetjs.Vol(1,1,fnum)
-          tstv.w[0] = pctlag1train[i]
-          tstv.w[1] = pctlag2train[i]
-          tstv.w[2] = pctlag4train[i]
-          tstv.w[3] = pctlag8train[i]
+          tstv.w[0] = pctlag1oos[i]
+          tstv.w[1] = pctlag2oos[i]
+          tstv.w[2] = pctlag4oos[i]
+          tstv.w[3] = pctlag8oos[i]
           predictions.push(magicNet.predict(tstv))
         }
 
