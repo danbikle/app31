@@ -103,6 +103,30 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
 
   // I should fill confusion matrix
   var chk = (predictions.length == labels_oos.length) // should be true
+  var truepos = 0; falsepos = 0; trueneg = 0; falseneg = 0;
+
+  for (i=0;i<oos_size;i++){
+    if ((predictions[i] == 1) && (labels_oos[i] == 1))
+      truepos += 1;
+
+    if ((predictions[i] == 1) && (labels_oos[i] == 0))
+      falsepos += 1;
+
+    if ((predictions[i] == 0) && (labels_oos[i] == 0))
+      trueneg += 1;
+
+    if ((predictions[i] == 0) && (labels_oos[i] == 1))
+      falseneg += 1;
+  }
+
+  // I should see
+  truepos
+  falsepos
+  trueneg
+  falseneg
+  var pos_accuracy = 100.0 * truepos / (truepos + falsepos)
+  var neg_accuracy = 100.0 * trueneg / (trueneg + falseneg)
+  var     accuracy = 100.0 * (truepos + trueneg) / oos_size
 
   'd3.csv done'
 })
