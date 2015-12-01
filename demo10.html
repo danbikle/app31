@@ -42,8 +42,7 @@
     };
 
     var lead1 = function(my_a) {
-      var tmp_a   = ([my_a[0]]).concat(my_a);
-      var lead1_a = tmp_a.slice(0,my_a.length-1);
+      var lead1_a = my_a.slice(1).concat(my_a[my_a.length-1]);
       var chk = (lead1_a.length == my_a.length); // should be true
       return lead1_a;
     }
