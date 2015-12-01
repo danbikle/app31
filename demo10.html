@@ -61,17 +61,18 @@
     }
     // I should use cpasc_a to store dates,prices,pct-deltas
     var cpasc_a  = []
-    d3.csv("/csv/head.csv", function(error, csv_a) {
+    d3.csv("/csv/GSPC.csv", function(error, csv_a) {
       if (error) throw error
       // Yahoo gives the data by date descending.
       // I should order it    by date ascending.
       csv_a.reverse()
       // I should get array of closing prices
       var cp_a   = csv_a.map(function(row){return +row['Close']})
-      var lead_a = lead1(cp_a)
-      lead_a
       var pctlag1 = pctlagn(1,cp_a)
-      pctlag1
+      var pctlag2 = pctlagn(2,cp_a)
+      var pctlag4 = pctlagn(4,cp_a)
+      var pctlag8 = pctlagn(8,cp_a)
+      pctlag8
       var pctlead = pctlead1(cp_a)
       pctlead
     })
