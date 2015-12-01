@@ -51,6 +51,14 @@
       }
       return pctlagn_a
     }
+    var pctlead1(my_a) {
+      var pctlead_a = [];
+      var lead_a    = lead1(my_a);
+      for (i=0; i<my_a.length;i++) {
+        pctlead_a.push(100.0*(lead_a[i]-my_a[i])/my_a[i]);
+      }
+      return pctlead_a
+    }
     // I should use cpasc_a to store dates,prices,pct-deltas
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
@@ -64,7 +72,8 @@
       lead_a;
       var pctlag1 = pctlagn(1,cp_a);
       pctlag1;
-
+      var pctlead = pctlead1(cp_a);
+      pctlead;
     });
 
     </script>
