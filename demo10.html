@@ -89,6 +89,23 @@
       var labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
       labels
 
+      // The MagicNet class performs fully-automatic prediction on your data. 
+
+      // options struct:
+      var opts = {}; 
+      /* what portion of data goes to train, 
+      in train/validation fold splits. Here, 0.7 means 70% */
+      opts.train_ratio = 0.7; 
+      // number of folds to evaluate per candidate:
+      opts.num_folds = 1; 
+      // number of candidates to evaluate in parallel:
+      opts.num_candidates = 50; 
+      // number of epochs to make through data per fold
+      opts.num_epochs = 20; 
+      /* how many nets to average in the end for prediction? 
+      likely higher = better but slower: */
+      opts.ensemble_size = 20; 
+      
     })
 
     </script>
