@@ -66,8 +66,13 @@
       // Yahoo gives the data by date descending.
       // I should order it    by date ascending.
       csv_a.reverse()
+      // I should use two integers to specify my training data:
+      var train_end   = cp_a.length - 252  // 1 yr ago
+      var train_start = train_end - 252*10 // 10 yrs
+      csv_train_a = csv_a.slice(train_start,train_end) 
+
       // I should get array of closing prices
-      var cp_a   = csv_a.map(function(row){return +row['Close']})
+      var cp_a   = csv_train_a.map(function(row){return +row['Close']})
       var pctlag1 = pctlagn(1,cp_a)
       var pctlag2 = pctlagn(2,cp_a)
       var pctlag4 = pctlagn(4,cp_a)
@@ -76,9 +81,6 @@
       var pctlead = pctlead1(cp_a)
       pctlead
 
-      // I should use two integers to specify my training data:
-      var train_end   = cp_a.length - 252  // 1 yr ago
-      var train_start = train_end - 252*10 // 10 yrs
       // I should find the median of pctlead in my training data
       train_median    = d3.median(pctlead);
       train_median
