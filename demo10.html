@@ -71,18 +71,42 @@
 //      var train_size  = 252*10              // 10 yrs
       var train_size  = 252*2              // 2 yrs
       var train_start = train_end - train_size
-      csv_train_a = csv_a.slice(train_start,train_end) 
+      // I should ensure train data and out-of-sample data do not mix:
+      var oos_start = train_end +    1
+      var oos_end   = csv_a.length - 1
 
-      // I should get array of closing prices
-      var cp_a   = csv_train_a.map(function(row){return +row['Close']})
+      // I should get array of closing prices:
+      var cp_a = csv_a.map(function(row){return +row['Close']})
+      // I should create some features from prices
       var pctlag1 = pctlagn(1,cp_a)
       var pctlag2 = pctlagn(2,cp_a)
       var pctlag4 = pctlagn(4,cp_a)
       var pctlag8 = pctlagn(8,cp_a)
       var fnum    = 4 // Above, I see 4 features now
-
+      // I get my labels from pctlead later
       var pctlead = pctlead1(cp_a)
 
+      // I should separate the training data from out-of-sample data.
+      // Arbitrarily I set the boundry between the two at 1 year ago which is 252 observations.
+      var pctlag1train  = pctlag1.slice(train_start,train_end)
+      var pctlag2train  = pctlag2.slice(train_start,train_end)
+      var pctlag4train  = pctlag4.slice(train_start,train_end)
+      var pctlag8train  = pctlag8.slice(train_start,train_end)
+      var pctlead_train = pctlead.slice(train_start,train_end)
+
+      // I should find the median of pctlead in my training data
+      train_median = d3.median(pctlead_train)
+      // I should create an array of 2 labels from train_median
+      var labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
+      var labels_train = labels.slice(train_start,train_end)
+
+      // I should get out-of-sample data ready for later.
+      var pctlag1oos  = pctlag1.slice(oos_start,oos_end)
+      var pctlag2oos  = pctlag2.slice(oos_start,oos_end)
+      var pctlag4oos  = pctlag4.slice(oos_start,oos_end)
+      var pctlag8oos  = pctlag8.slice(oos_start,oos_end)
+      var pctlead_oos = pctlead.slice(oos_start,oos_end)
+      var labels_oos  = labels.slice( oos_start,oos_end)
       // The MagicNet class performs fully-automatic prediction on your data. 
 
       // options struct:
@@ -99,26 +123,20 @@
       /* how many nets to average in the end for prediction? 
       likely higher = better but slower: */
       opts.ensemble_size = 4
-      var train_data   = []
-      var train_length = pctlag1.length
       // I should convert my data into magicnet format which is a collection of Vol objects.
+      var train_data   = []
       for(i=0;i<train_size;i++){
         // Vol API for me is usually: Vol(1,1,nmbrOfFeatures,0.0)
 //debug
         // var obsv_v = new convnetjs.Vol(1,1,fnum,0.0)
         var obsv_v = new convnetjs.Vol(1,1,1,0.0)
 //debug
-        obsv_v.w[0] = pctlag1[i]
+        obsv_v.w[0] = pctlag1train[i]
         train_data.push(obsv_v)
-        train_data
       }
-
-      // I should find the median of pctlead in my training data
-      train_median     = d3.median(pctlead)
-      // I should create an array of 2 labels from train_median
-      var train_labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
-
-      var magicNet = new convnetjs.MagicNet(train_data, train_labels, opts)
+      var chk = (train_data.length == pctlag1train.length) // should be true
+      chk;
+      var magicNet = new convnetjs.MagicNet(train_data, labels_train, opts)
 
       // On finish, I should call finishedBatch()
       magicNet.onFinishBatch(finishedBatch)
@@ -129,13 +147,24 @@
        
       function finishedBatch() {
         // I should try 2 predictions
-        var tstv1 = new convnetjs.Vol(1,1,1)
+        var tstv1  = new convnetjs.Vol(1,1,1)
         tstv1.w[0] = 1.0   // 2stddev up from median
         var prediction1 = magicNet.predict(tstv1)
-        var tstv2 = new convnetjs.Vol(1,1,1)
+        var tstv2  = new convnetjs.Vol(1,1,1)
         tstv2.w[0] = -1.0 // 2stddev down from median
         var prediction2 = magicNet.predict(tstv2)
 
+        // I should predict out of sample data
+        var predictions = []
+        for (i=oos_start;i<oos_end;i++){
+          var tstv  = new convnetjs.Vol(1,1,1)
+          tstv.w[0] = pctlag1train[i]
+          predictions.push(magicNet.predict(tstv))
+        }
+
+        // I should see:
+        predictions
+        // JSON of my magicNet might be useful later:
         var mnjson = magicNet.toJSON()
         'finishedBatch'
       }
