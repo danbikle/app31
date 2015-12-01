@@ -101,5 +101,8 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
   // I should see:
   predictions
 
+  // I should fill confusion matrix
+  var chk = (predictions.length == labels_oos.length) // should be true
+
   'd3.csv done'
 })
