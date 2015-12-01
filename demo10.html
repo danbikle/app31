@@ -41,6 +41,13 @@
       return lagn_a;
     };
 
+    var lead1 = function(my_a) {
+      var tmp_a   = ([my_a[0]]).concat(my_a);
+      var lead1_a = tmp_a.slice(0,my_a.length-1);
+      var chk = (lead1_a.length == my_a.length); // should be true
+      return lead1_a;
+    }
+
     var getcol = function(key,csv_a) {
       // This function should return col-n from array of obj.
       var mycol = [];
@@ -65,6 +72,8 @@
       var cp_a   = cp_s_a.map(function(str){return +str;});
       var lag1_a = lagn(1,cp_a);
       lag1_a;
+      var lead_a = lead1(cp_a);
+      lead_a;
 
     });
 
