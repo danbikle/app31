@@ -79,35 +79,26 @@
       var pctlag4 = pctlagn(4,cp_a)
       var pctlag8 = pctlagn(8,cp_a)
       var fnum    = 4 // Above, I see 4 features now
-      pctlag8
+
       var pctlead = pctlead1(cp_a)
-      pctlead
-
-      // I should find the median of pctlead in my training data
-      train_median    = d3.median(pctlead);
-      train_median
-
-      // I should create an array of 2 labels from train_median
-      var labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
-      labels
 
       // The MagicNet class performs fully-automatic prediction on your data. 
 
       // options struct:
-      var opts = {}; 
+      var opts = {} 
       /* what portion of data goes to train, 
       in train/validation fold splits. Here, 0.7 means 70% */
-      opts.train_ratio = 0.7; 
+      opts.train_ratio = 0.7 
       // number of folds to evaluate per candidate:
-      opts.num_folds = 1; 
+      opts.num_folds = 1 
       // number of candidates to evaluate in parallel:
-      opts.num_candidates = 50; 
+      opts.num_candidates = 50 
       // number of epochs to make through data per fold
-      opts.num_epochs = 20; 
+      opts.num_epochs = 20 
       /* how many nets to average in the end for prediction? 
       likely higher = better but slower: */
-      opts.ensemble_size = 20; 
-      var train_data  = [];
+      opts.ensemble_size = 20 
+      var train_data   = []
       var train_length = pctlag1.length
       // I should convert my data into magicnet format which is a collection of Vol objects.
       for(i=0;i<train_size;i++){
@@ -120,7 +111,15 @@
         train_data.push(obsv_v)
         train_data
       }
-      train_data
+
+      // I should find the median of pctlead in my training data
+      train_median     = d3.median(pctlead)
+      // I should create an array of 2 labels from train_median
+      var train_labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
+
+      var magicNet = new convnetjs.MagicNet(train_data, train_labels, opts);
+      magicNet
+
       'done'
     })
 
