@@ -80,6 +80,9 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
   var pctlag8oos  = pctlag8.slice(oos_start,oos_end)
   var pctlead_oos = pctlead.slice(oos_start,oos_end)
   var labels_oos  = labels.slice( oos_start,oos_end)
+
+  var chk = (labels_oos.length == oos_size) // should be true
+
   // The MagicNet class performs fully-automatic prediction on your data. 
 
   // I should load magicNet from JSON
@@ -102,7 +105,7 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
   predictions
 
   // I should fill confusion matrix
-  var chk = (predictions.length == labels_oos.length) // should be true
+  chk = (predictions.length == labels_oos.length) // should be true
   var truepos = 0; falsepos = 0; trueneg = 0; falseneg = 0;
 
   for (i=0;i<oos_size;i++){
@@ -118,7 +121,8 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
     if ((predictions[i] == 0) && (labels_oos[i] == 1))
       falseneg += 1;
   }
-
+  // should be true:
+  chk = ((truepos.length+trueneg.length+falsepos.length+falseneg.length) == oos_size)
   // I should see
   truepos
   falsepos
