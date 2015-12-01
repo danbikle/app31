@@ -90,6 +90,10 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
   // I should get magicNet10json from json/magicNet10.json
   magicNet.fromJSON(magicNet10json);
 
+  var putjson_here = d3.select('#json1')
+  var mnjson_s = JSON.stringify(magicNet10json)
+  putjson_here.html(mnjson_s)
+
   // I should predict out-of-sample data
   var predictions = []
   for (i=0;i<oos_size;i++){

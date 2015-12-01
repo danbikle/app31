@@ -29,7 +29,18 @@
   </head>
   <body>
     <h1>app31/demo10</h1>
+    <h2>Some MagicNet JSON:</h2>
+    <pre><code id='json1'></code></pre>
     <script>
+
+// debug
+var myjson = {'hello':'world'}
+var mnjson_s = JSON.stringify(myjson)
+var putjson_here = d3.select('#json1')
+putjson_here.html(mnjson_s)
+'debug'
+// debug
+
     var lagn = function(n,my_a) {
       // This function should return array which lags my_a by n.
       // I should get first n members:
@@ -162,7 +173,7 @@
         var mnjson   = magicNet.toJSON()
         var mnjson_s = JSON.stringify(mnjson)
         var putjson_here = d3.select('#json1')
-        putjson_here.text(mnjson_s)
+        putjson_here.html(mnjson_s)
         'finishedBatch'
       }
 
@@ -170,7 +181,5 @@
     })
     
     </script>
-    <h2>Some MagicNet JSON:</h2>
-    <pre><code id='json1'></code></pre>
   </body>
 </html>
