@@ -77,6 +77,7 @@
       var pctlag2 = pctlagn(2,cp_a)
       var pctlag4 = pctlagn(4,cp_a)
       var pctlag8 = pctlagn(8,cp_a)
+      var fnum    = 4 // Above, I see 4 features now
       pctlag8
       var pctlead = pctlead1(cp_a)
       pctlead
@@ -105,7 +106,17 @@
       /* how many nets to average in the end for prediction? 
       likely higher = better but slower: */
       opts.ensemble_size = 20; 
-      
+      var train_data  = [];
+      for(i=0;i<pctlag1;i++){
+//debug
+        // var obsv_v = new convnetjs.Vol(1,1,fnum,0.0)
+        var obsv_v = new convnetjs.Vol(1,1,1,0.0)
+//debug
+        obsv_v.w[0] = pctlag1[i]
+        train_data.push(obsv_v)
+        train_data
+      }
+      train_data
     })
 
     </script>
