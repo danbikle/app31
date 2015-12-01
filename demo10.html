@@ -43,6 +43,14 @@
       // This function should return array which leads my_a by 1.
       return my_a.slice(1).concat(my_a[my_a.length-1]);
     }
+    var pctlagn = function(n,my_a) {
+      var pctlagn_a = [];
+      var lagn_a    = lagn(n,my_a);
+      for (i=0; i<my_a.length;i++) {
+        pctlagn_a.push(100.0*(my_a[i]-lagn_a[i])/lagn_a[i]))
+      }
+      return pctlagn_a
+    }
     // I should use cpasc_a to store dates,prices,pct-deltas
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
