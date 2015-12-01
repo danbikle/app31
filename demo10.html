@@ -68,7 +68,7 @@
       csv_a.reverse()
       // I should use two integers to specify my training data:
       var train_end   = csv_a.length - 252  // 1 yr ago
-      var train_size  = 252*10              // 10 yrs
+      var train_size  = 252*30              // 10 yrs
       var train_start = train_end - train_size
       // I should ensure train data and out-of-sample data do not mix:
       var oos_start = train_end +    1
@@ -118,10 +118,10 @@
       // number of candidates to evaluate in parallel:
       opts.num_candidates = 40
       // number of epochs to make through data per fold
-      opts.num_epochs = 8
+      opts.num_epochs = 20
       /* how many nets to average in the end for prediction? 
       likely higher = better but slower: */
-      opts.ensemble_size = 8
+      opts.ensemble_size = 16
       // I should convert my data into magicnet format which is a collection of Vol objects.
       var train_data   = []
       for(i=0;i<train_size;i++){
