@@ -117,10 +117,21 @@
       // I should create an array of 2 labels from train_median
       var train_labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
 
-      var magicNet = new convnetjs.MagicNet(train_data, train_labels, opts);
+      var magicNet = new convnetjs.MagicNet(train_data, train_labels, opts)
       magicNet
 
-      'done'
+      // example of setting callback for events:
+      magicNet.onFinishBatch(finishedBatch)
+       
+      /* start training MagicNet. 
+      Every call trains all candidates in current batch on one example: */
+      setInterval(function(){ magicNet.step() })
+       
+      function finishedBatch() {
+        'finishedBatch'
+      }
+
+      'd3.csv done'
     })
 
     </script>
