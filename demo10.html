@@ -69,7 +69,7 @@
       // I should use two integers to specify my training data:
       var train_end   = csv_a.length - 252  // 1 yr ago
 //      var train_size  = 252*10              // 10 yrs
-      var train_size  = 252*2              // 2 yrs
+      var train_size  = 252*4
       var train_start = train_end - train_size
       // I should ensure train data and out-of-sample data do not mix:
       var oos_start = train_end +    1
@@ -97,7 +97,7 @@
       // I should find the median of pctlead in my training data
       train_median = d3.median(pctlead_train)
       // I should create an array of 2 labels from train_median
-      var labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1;})
+      var labels = pctlead.map(function(x){if (x<train_median) return 0; else return 1})
       var labels_train = labels.slice(train_start,train_end)
 
       // I should get out-of-sample data ready for later.
