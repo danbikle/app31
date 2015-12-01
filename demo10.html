@@ -109,7 +109,9 @@
       opts.ensemble_size = 20; 
       var train_data  = [];
       var train_length = pctlag1.length
+      // I should convert my data into magicnet format which is a collection of Vol objects.
       for(i=0;i<train_size;i++){
+        // Vol API for me is usually: Vol(1,1,nmbrOfFeatures,0.0)
 //debug
         // var obsv_v = new convnetjs.Vol(1,1,fnum,0.0)
         var obsv_v = new convnetjs.Vol(1,1,1,0.0)
