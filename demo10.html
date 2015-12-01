@@ -30,34 +30,19 @@
   <body>
     <h1>app31/demo10</h1>
     <script>
-    var chk = false;
     var lagn = function(n,my_a) {
-      // This function should return array which lags my_a by n
-      // I should get first n
+      // This function should return array which lags my_a by n.
+      // I should get first n members:
       var front_a = my_a.slice(0,n);
-      // I should remove last n
+      // I should remove last n members:
       var back_a = my_a.slice(0,my_a.length-n); 
       var lagn_a = front_a.concat(back_a);
       return lagn_a;
     };
-
     var lead1 = function(my_a) {
-      var lead1_a = my_a.slice(1).concat(my_a[my_a.length-1]);
-      var chk = (lead1_a.length == my_a.length); // should be true
-      return lead1_a;
+      // This function should return array which leads my_a by 1.
+      return my_a.slice(1).concat(my_a[my_a.length-1]);
     }
-
-    var getcol = function(key,csv_a) {
-      // This function should return col-n from array of obj.
-      var mycol = [];
-      csv_a.forEach(function(row){
-        mycol.push(row[key]);
-        row;
-        mycol;
-      });
-      return mycol;
-    };
-
     // I should use cpasc_a to store dates,prices,pct-deltas
     var cpasc_a  = [];
     d3.csv("/csv/head.csv", function(error, csv_a) {
@@ -65,10 +50,8 @@
       // Yahoo gives the data by date descending.
       // I should order it    by date ascending.
       csv_a.reverse();
-      // I should get the 'Close' column from my CSV
-      var cp_s_a = getcol('Close',csv_a);
-      // I should convert from str to number
-      var cp_a   = cp_s_a.map(function(str){return +str;});
+      // I should get array of closing prices
+      var cp_a   = csv_a.map(function(row){return +row['Close'];})
       var lag1_a = lagn(1,cp_a);
       lag1_a;
       var lead_a = lead1(cp_a);
