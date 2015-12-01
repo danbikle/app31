@@ -125,12 +125,12 @@
       // I should convert my data into magicnet format which is a collection of Vol objects.
       var train_data   = []
       for(i=0;i<train_size;i++){
-        // Vol API for me is usually: Vol(1,1,nmbrOfFeatures,0.0)
-//debug
-        // var obsv_v = new convnetjs.Vol(1,1,fnum,0.0)
-        var obsv_v = new convnetjs.Vol(1,1,1,0.0)
-//debug
+        // Vol API for me is usually: Vol(1,1,nmbrOfFeatures)
+        var obsv_v = new convnetjs.Vol(1,1,fnum)
         obsv_v.w[0] = pctlag1train[i]
+        obsv_v.w[1] = pctlag2train[i]
+        obsv_v.w[2] = pctlag4train[i]
+        obsv_v.w[3] = pctlag8train[i]
         train_data.push(obsv_v)
       }
       var chk = (train_data.length == pctlag1train.length) // should be true
@@ -145,19 +145,14 @@
       setInterval(function(){ magicNet.step() })
        
       function finishedBatch() {
-        // I should try 2 predictions
-        var tstv1  = new convnetjs.Vol(1,1,1)
-        tstv1.w[0] = 1.0   // 2stddev up from median
-        var prediction1 = magicNet.predict(tstv1)
-        var tstv2  = new convnetjs.Vol(1,1,1)
-        tstv2.w[0] = -1.0 // 2stddev down from median
-        var prediction2 = magicNet.predict(tstv2)
-
         // I should predict out of sample data
         var predictions = []
         for (i=oos_start;i<oos_end;i++){
-          var tstv  = new convnetjs.Vol(1,1,1)
+          var tstv  = new convnetjs.Vol(1,1,fnum)
           tstv.w[0] = pctlag1train[i]
+          tstv.w[1] = pctlag2train[i]
+          tstv.w[2] = pctlag4train[i]
+          tstv.w[3] = pctlag8train[i]
           predictions.push(magicNet.predict(tstv))
         }
 
