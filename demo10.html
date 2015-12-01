@@ -73,6 +73,7 @@
       // I should ensure train data and out-of-sample data do not mix:
       var oos_start = train_end +    1
       var oos_end   = csv_a.length - 1
+      var oos_size  = oos_end - oos_start
 
       // I should get array of closing prices:
       var cp_a = csv_a.map(function(row){return +row['Close']})
@@ -147,7 +148,7 @@
       function finishedBatch() {
         // I should predict out of sample data
         var predictions = []
-        for (i=oos_start;i<oos_end;i++){
+        for (i=0;i<oos_size;i++){
           var tstv  = new convnetjs.Vol(1,1,fnum)
           tstv.w[0] = pctlag1train[i]
           tstv.w[1] = pctlag2train[i]
