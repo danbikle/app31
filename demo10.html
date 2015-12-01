@@ -60,10 +60,10 @@
       csv_a.reverse();
       // I should get array of closing prices
       var cp_a   = csv_a.map(function(row){return +row['Close'];})
-      var lag1_a = lagn(1,cp_a);
-      lag1_a;
       var lead_a = lead1(cp_a);
       lead_a;
+      var pctlag1 = pctlagn(1,cp_a);
+      pctlag1;
 
     });
 
