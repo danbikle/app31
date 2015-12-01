@@ -134,8 +134,7 @@
         obsv_v.w[3] = pctlag8train[i]
         train_data.push(obsv_v)
       }
-      var chk = (train_data.length == pctlag1train.length) // should be true
-      chk;
+
       var magicNet = new convnetjs.MagicNet(train_data, labels_train, opts)
 
       // On finish, I should call finishedBatch()
