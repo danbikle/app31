@@ -122,7 +122,7 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
       falseneg += 1;
   }
   // should be true:
-  chk = ((truepos.length+trueneg.length+falsepos.length+falseneg.length) == oos_size)
+  chk = ((truepos+trueneg+falsepos+falseneg) == oos_size)
   // I should see
   truepos
   falsepos
