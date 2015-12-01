@@ -75,6 +75,14 @@
       pctlag8
       var pctlead = pctlead1(cp_a)
       pctlead
+
+      // I should use two integers to specify my training data:
+      var train_end   = cp_a.length - 252  // 1 yr ago
+      var train_start = train_end - 252*10 // 10 yrs
+      // I should find the median of pctlead in my training data
+      train_median    = d3.median(pctlead);
+      train_median
+
     })
 
     </script>
