@@ -132,5 +132,17 @@ d3.csv("/csv/GSPC.csv", function(error, csv_a) {
   var neg_accuracy = 100.0 * trueneg / (trueneg + falseneg)
   var     accuracy = 100.0 * (truepos + trueneg) / oos_size
 
+  // I should study pctlead dependence on predictions
+  var trueg_a = []; falseg_a = [];
+  for (i=0;i<oos_size;i++){
+    if (predictions[i] == 1)
+      trueg_a.push(pctlead_oos[i])
+    else
+      falseg_a.push(pctlead_oos[i])
+  }
+  chk = ((trueg_a.length + falseg_a.length) == oos_size) // should be true
+  var true_avg  = d3.mean(trueg_a)
+  var false_avg = d3.mean(falseg_a)
+  chk = (true_avg > false_avg) // should be true
   'd3.csv done'
 })
