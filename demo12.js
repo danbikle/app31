@@ -58,14 +58,14 @@ var cr_mn = function(train_o) {
   var train_data   = []
   for(i =0;i<train_o[ky].length;i++){
     var widx   = 0
-    var obsv_v   = new convnetjs.Vol(1,1,fnum)
+    var obsv_v = new convnetjs.Vol(1,1,fnum)
     for (ky in train_o) {
       if (ky != 'label') {
-        obsv.w[widx] = train_o[ky][i]
-               widx += 1
+        obsv_v.w[widx] = train_o[ky][i]
+        widx += 1
       }
-    train_data.push(obsv_v)
     }
+    train_data.push(obsv_v)
   }
 
   mnjson = {}
