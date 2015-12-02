@@ -79,11 +79,10 @@ var cr_mn = function(train_o) {
   /* start training MagicNet. 
   Every call trains all candidates in current batch on one example: */
   setInterval(function(){ magicNet.step() })
-  var mnjson = {}
+  // Where should I put this function?
   function finishedBatch() {
     mnjson = magicNet.toJSON()
   }
-  return mnjson
 }
 // I should create a callback for d3.csv():
 var cb1 = function(err, csv_a) {
@@ -108,7 +107,7 @@ var cb1 = function(err, csv_a) {
   var labels       = cp2label(train_median,cp_a)
   var train_o      = cr_train_o(train_start,train_end,features_o,labels);
   // I should use train_o to create and train a new magicNet
-  var mnjson = cr_mn(train_o)
+  cr_mn(train_o)
   'cb1 done'
 }
 
