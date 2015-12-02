@@ -52,8 +52,9 @@ function cp2label(bndry,cp_a){
   return labels_a
 }
 function calc_results(predictions_a,labels_oos_a){
-  // I should fill confusion matrix
-  var chk = (predictions_a.length == labels_oos.length) // should be true
+  // I should fill confusion matrix.
+  var chk = (predictions_a.length == labels_oos_a.length) 
+  //  chk should be true
   var truepos = 0; falsepos = 0; trueneg = 0; falseneg = 0;
   for (i=0;i<oos_size;i++){
     if ((predictions_a[i] == 1) && (labels_oos[i] == 1))
