@@ -48,11 +48,13 @@ var cb1 = function(err, csv_a) {
   var oos_size  = oos_end - oos_start
   var pctlead = pctlead1(cp_a)
   var pctlead_train = pctlead.slice(train_start,train_end)
-  // Now that I know pctlead_train, I can calc train_median
+  // Now that I know pctlead_train, I can calculate train_median
   var train_median = d3.median(pctlead_train)
   var features_o   = cp2ftr(cp_a)
   var labels       = cp2label(train_median,cp_a)
   var train_o      = cr_train_o(train_start,train_end,features_o,labels);
+  // I should use train_o to create and train a new magicNet
+  var mnjson = cr_mn(train_o)
   'cb1 done'
 }
 
