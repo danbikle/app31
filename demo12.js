@@ -31,6 +31,44 @@ var cr_train_o = function(train_start,train_end,features_o,labels) {
   train_o.label = labels.slice(train_start,train_end)
   return train_o
 }
+
+// This function should use train_o to create and train a new magicNet.
+var cr_mn = function(train_o) {
+  // The MagicNet class performs fully-automatic prediction on your data.
+  // options struct:
+  var opts = {} 
+  /* what portion of data goes to train, 
+  in train/validation fold splits. Here, 0.7 means 70% */
+  opts.train_ratio = 0.7 
+  // number of folds to evaluate per candidate:
+  opts.num_folds = 2
+  // number of candidates to evaluate in parallel:
+  opts.num_candidates = 2
+  // number of epochs to make through data per fold
+  opts.num_epochs = 2
+  /* how many nets to average in the end for prediction? 
+  likely higher = better but slower: */
+  opts.ensemble_size = 2
+  // I should start work on obsv_v which is a volume of observations
+  var fnum = -1
+  // I need to know obsv_v size before I create it
+  for (ky in train_o) {fnum +=1}
+  // I know its size now
+  for(i =0;i<train_o[ky].length;i++){
+    var widx   = 0
+    var obsv_v   = new convnetjs.Vol(1,1,fnum)
+    for (ky in train_o) {
+      if (ky != 'label') {
+        obsv.w[widx] = train_o[ky][i]
+               widx += 1
+      }
+    }
+  }
+
+  mnjson = {}
+  train_o
+  return mnjson
+}
 // I should create a callback for d3.csv():
 var cb1 = function(err, csv_a) {
   if (err) throw err
