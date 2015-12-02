@@ -59,6 +59,7 @@ var cr_mn = function(train_o) {
   for(i =0;i<train_o[ky].length;i++){
     var widx   = 0
     var obsv_v = new convnetjs.Vol(1,1,fnum)
+    // I should match a vol to a feature
     for (ky in train_o) {
       if (ky != 'label') {
         obsv_v.w[widx] = train_o[ky][i]
