@@ -33,3 +33,8 @@ var pctlead1 = function(my_a) {
   }
   return pctlead_a
 }
+
+var cp2labels = function(bndry, pctlead_a) {
+  var labels = []
+  return labels
+}
