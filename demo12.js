@@ -14,21 +14,21 @@ var cp2ftr = function(cp_a) {
 }
 
 // This function should convert array into array of labels:
-var cp2label  = function(bndry,cp_a) {
-  var pctlead = pctlead1(cp_a)
-  var labels  = pctlead.map(function(x){if (x<bndry) return 0; else return 1})
-  return labels
+var cp2label   = function(bndry,cp_a) {
+  var pctlead  = pctlead1(cp_a)
+  var labels_a = pctlead.map(function(x){if (x<bndry) return 0; else return 1})
+  return labels_a
 }
 
 // This function should create training data from features, labels:
-var cr_train_o = function(train_start,train_end,features_o,labels) {
+var cr_train_o = function(train_start,train_end,features_o,labels_a) {
   var train_o = {}
   // I should get inside features_o and slice each feature
   for (ky in features_o) {
     train_o[ky] = features_o[ky].slice(train_start,train_end)
   }
   // To train, I should get label too:
-  train_o.label = labels.slice(train_start,train_end)
+  train_o.label = labels_a.slice(train_start,train_end)
   return train_o
 }
 
@@ -106,8 +106,8 @@ var cb1 = function(err, csv_a) {
   // Now that I know pctlead_train, I can calculate train_median
   var train_median = d3.median(pctlead_train)
   var features_o   = cp2ftr(cp_a)
-  var labels       = cp2label(train_median,cp_a)
-  var train_o      = cr_train_o(train_start,train_end,features_o,labels);
+  var labels_a     = cp2label(train_median,cp_a)
+  var train_o      = cr_train_o(train_start,train_end,features_o,labels_a);
   // I should use train_o to create and train a new magicNet
   cr_mn(train_o)
   'cb1 done'
