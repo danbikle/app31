@@ -26,6 +26,7 @@ var cb1 = function(err, csv_a) {
   // Yahoo gives the data by date descending.
   // I should order it    by date ascending.
   csv_a.reverse()
+  var cp_a = csv_a.map(function(row){return +row['Close']})
   // I should define boundries of out-of-sample, train data
   var train_end   = csv_a.length - 253  // 1 yr ago
   var train_size  = 252*20              // 20 yrs
@@ -34,13 +35,12 @@ var cb1 = function(err, csv_a) {
   var oos_start = train_end +    1
   var oos_end   = csv_a.length - 1
   var oos_size  = oos_end - oos_start
-  // Now that I know boundries, I can calc train_median
-
-
-
-  var cp_a = csv_a.map(function(row){return +row['Close']})
-  var features_o = cp2ftr(  cp_a)
-  var labels     = cp2label(train_median,cp_a)
+  var pctlead = pctlead1(cp_a)
+  var pctlead_train = pctlead.slice(train_start,train_end)
+  // Now that I know pctlead_train, I can calc train_median
+  var train_median = d3.median(pctlead_train)
+  var features_o   = cp2ftr(cp_a)
+  var labels       = cp2label(train_median,cp_a)
   'cb1 done'
 }
 
