@@ -22,10 +22,13 @@ var cp2label  = function(bndry,cp_a) {
 
 // This function should create training data from features, labels:
 var cr_train_o = function(train_start,train_end,features_o,labels) {
-  train_o = {}
+  var train_o = {}
   // I should get inside features_o and slice each feature
   features_o
-
+  for (ky in features_o) {
+    train_o[ky] = features_o[ky].slice(train_start,train_end)
+  }
+  train_o.label = labels.slice(train_start,train_end)
   return train_o
 }
 // I should create a callback for d3.csv():
