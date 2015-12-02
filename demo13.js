@@ -88,6 +88,20 @@ function calc_results(predictions_a,labels_oos_a){
   var true_avg  = d3.mean(trueg_a)
   var false_avg = d3.mean(falseg_a)
   chk = (true_avg > false_avg) // should be true
+  var results_o          = {}
+  results_o.truepos      = truepos
+  results_o.falsepos     = falsepos
+  results_o.trueneg      = trueneg
+  results_o.falseneg     = falseneg
+  results_o.pos_accuracy = pos_accuracy
+  results_o.neg_accuracy = neg_accuracy
+  results_o.true_avg     = true_avg
+  results_o.false_avg    = false_avg
+  if (true_avg > false_avg)
+    results_o.opinion    = 'good'
+  else
+    results_o.opinion    = 'bad'
+  return results_o
 }
 // This function should return array full of predictions:
 function mn_predict(mymn, oos_o){
