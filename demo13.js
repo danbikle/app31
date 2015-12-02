@@ -146,7 +146,7 @@ function cb2(error, csv_a){
   // I should see a MN object I got from JSON:
   var mymn          = new convnetjs.MagicNet();
   // mymn should be able to predict:
-  var mymn.fromJSON(magicNet11json);
+  mymn.fromJSON(magicNet11json);
   // I should predict oos_o using mymn:
   var predictions_a = mn_predict(mymn, oos_o)
   // I should compare predictions_a to labels_oos_a
