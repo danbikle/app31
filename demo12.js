@@ -69,6 +69,8 @@ var cr_mn = function(train_o) {
     train_data.push(obsv_v)
   }
 
+  var chk = (train_data.length == train_o.label.length) // should be true
+
   mnjson = {}
   train_o
   return mnjson
