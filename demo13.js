@@ -6,14 +6,14 @@ This script should help me run a MagicNet model I created.
 'hello'
 
 // This function should return array which leads my_a by 1:
-function lead1(my_a) {
+function lead1(my_a){
   return my_a.slice(1).concat(my_a[my_a.length-1])
 }
 // This function should transform array into array of pctleads:
-function pctlead1(my_a) {
+function pctlead1(my_a){
   var pctlead_a = []
   var lead_a    = lead1(my_a)
-  for (i=0; i<my_a.length;i++) {
+  for (i=0; i<my_a.length;i++){
     pctlead_a.push(100.0*(lead_a[i]-my_a[i])/my_a[i])
   }
   return pctlead_a
@@ -28,7 +28,7 @@ function cp2ftr(cp_a){
   return features_o
 }
 // This function should convert array into array of labels:
-function cp2label(bndry,cp_a) {
+function cp2label(bndry,cp_a){
   var pctlead  = pctlead1(cp_a)
   var labels_a = pctlead.map(function(x){if (x<bndry) return 0; else return 1})
   return labels_a
@@ -70,25 +70,21 @@ function calc_results(predictions_a,labels_oos_a){
   var false_avg = d3.mean(falseg_a)
   chk = (true_avg > false_avg) // should be true
 }
-
-
 // This function should return array full of predictions:
 function mn_predict(mymn, oos_o){
   var oos_size = oos_o.length
-
   // I should start work on obsv_v which is a volume of observations
   var fnum = 0
   // I need to know obsv_v size before I create it
-  for (ky in oos_o) {fnum +=1}
+  for (ky in oos_o){fnum +=1}
   // I know its size now: fnum
-
   var predictions_a = []
   // Each observation should get a vol:
   for (i=0;i<oos_size;i++){
     var obsv_v = new convnetjs.Vol(1,1,fnum)
     var widx = 0
     // I should match each vol to some features
-    for (ky in oos_o) {
+    for (ky in oos_o){
       obsv_v.w[widx] = oos_o[ky][i]
       widx += 1
     }
@@ -96,13 +92,20 @@ function mn_predict(mymn, oos_o){
   }
   return  predictions_a
 }
-
-
+// This function should return a subset of data from features_o:
+function cr_oos_o(oos_start,oos_end,features_o){
+  oos_o = {}
+  for (ky in features_o){
+    if (ky != 'label')
+      oos_o[ky] = features_o.slice(oos_start,oos_end)
+  }
+  return oos_o
+}
 
 // I should get prices I want to predict:
 d3.csv("/csv/GSPC.csv", cb2);
 
-function cb2(error, csv_a) {
+function cb2(error, csv_a){
   if (error) throw error
   // Yahoo gives the data by date descending.
   // I should order it    by date ascending.
