@@ -41,14 +41,14 @@ var cr_mn = function(train_o) {
   in train/validation fold splits. Here, 0.7 means 70% */
   opts.train_ratio = 0.7 
   // number of folds to evaluate per candidate:
-  opts.num_folds = 2
+  opts.num_folds = 4
   // number of candidates to evaluate in parallel:
-  opts.num_candidates = 2
+  opts.num_candidates = 9
   // number of epochs to make through data per fold
-  opts.num_epochs = 2
+  opts.num_epochs = 33
   /* how many nets to average in the end for prediction? 
   likely higher = better but slower: */
-  opts.ensemble_size = 2
+  opts.ensemble_size = 9
   // I should start work on obsv_v which is a volume of observations
   var fnum = -1
   // I need to know obsv_v size before I create it
