@@ -79,11 +79,10 @@ var cr_mn = function(train_o) {
   /* start training MagicNet. 
   Every call trains all candidates in current batch on one example: */
   setInterval(function(){ magicNet.step() })
-   
+  var mnjson = {}
   function finishedBatch() {
-    var mnjson = magicNet.toJSON()
+    mnjson = magicNet.toJSON()
   }
-
   return mnjson
 }
 // I should create a callback for d3.csv():
