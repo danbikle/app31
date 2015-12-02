@@ -33,6 +33,70 @@ function cp2label(bndry,cp_a) {
   var labels_a = pctlead.map(function(x){if (x<bndry) return 0; else return 1})
   return labels_a
 }
+function calc_results(predictions_a,labels_oos_a){
+  // I should fill confusion matrix
+  var chk = (predictions_a.length == labels_oos.length) // should be true
+  var truepos = 0; falsepos = 0; trueneg = 0; falseneg = 0;
+  for (i=0;i<oos_size;i++){
+    if ((predictions_a[i] == 1) && (labels_oos[i] == 1))
+      truepos += 1;
+    if ((predictions_a[i] == 1) && (labels_oos[i] == 0))
+      falsepos += 1;
+    if ((predictions_a[i] == 0) && (labels_oos[i] == 0))
+      trueneg += 1;
+    if ((predictions_a[i] == 0) && (labels_oos[i] == 1))
+      falseneg += 1;
+  }
+  // should be true:
+  chk = ((truepos+trueneg+falsepos+falseneg) == oos_size)
+  // I should see
+  truepos
+  falsepos
+  trueneg
+  falseneg
+  var pos_accuracy = 100.0 * truepos / (truepos + falsepos)
+  var neg_accuracy = 100.0 * trueneg / (trueneg + falseneg)
+  var     accuracy = 100.0 * (truepos + trueneg) / oos_size
+  // I should study pctlead dependence on predictions_a
+  var trueg_a = []; falseg_a = [];
+  for (i=0;i<oos_size;i++){
+    if (predictions_a[i] == 1)
+      trueg_a.push(pctlead_oos[i])
+    else
+      falseg_a.push(pctlead_oos[i])
+  }
+  chk = ((trueg_a.length + falseg_a.length) == oos_size) // should be true
+  var true_avg  = d3.mean(trueg_a)
+  var false_avg = d3.mean(falseg_a)
+  chk = (true_avg > false_avg) // should be true
+}
+
+
+// This function should return array full of predictions:
+function mn_predict(mymn, oos_o){
+  var oos_size = oos_o.length
+
+  // I should start work on obsv_v which is a volume of observations
+  var fnum = 0
+  // I need to know obsv_v size before I create it
+  for (ky in oos_o) {fnum +=1}
+  // I know its size now: fnum
+
+  var predictions_a = []
+  // Each observation should get a vol:
+  for (i=0;i<oos_size;i++){
+    var obsv_v = new convnetjs.Vol(1,1,fnum)
+    var widx = 0
+    // I should match each vol to some features
+    for (ky in oos_o) {
+      obsv_v.w[widx] = oos_o[ky][i]
+      widx += 1
+    }
+    predictions.push(mymn.predict(obsv_v))
+  }
+  return  predictions_a
+}
+
 
 
 // I should get prices I want to predict:
