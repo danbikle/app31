@@ -106,7 +106,7 @@ function mn_predict(mymn, oos_o){
       obsv_v.w[widx] = oos_o[ky][i]
       widx += 1
     }
-    predictions.push(mymn.predict(obsv_v))
+    predictions_a.push(mymn.predict(obsv_v))
   }
   return  predictions_a
 }
