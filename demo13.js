@@ -168,7 +168,7 @@ function cb2(error, csv_a){
   // I should see results_o:
   results_o
   // I should show the JSON I use to build mymn:
-  d3.select('#json1').html(JSON.stringify(magicNet11json))
+  d3.select('#json1').html('var magicNet11json = '+JSON.stringify(magicNet11json))
   'end cb2'
 }
 

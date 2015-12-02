@@ -1,6 +1,7 @@
 /* css4demos.css */
 body {font-size: 1.2em; line-height: 1.7em; font-weight: bold; font-family: sans-serif;}
-a, a:visited {color: #0000BB;text-decoration: underline;}
-a:hover      {color: #BB0000;background-color: #EEEEEE; }
-#show_mycode {color: #600; font-weight: bold; background-color: #EEE; border-radius: 25px;}
-
+a, a:visited  {color: #0000BB;text-decoration: underline;}
+a:hover       {color: #BB0000;background-color: #EEEEEE; }
+#show_mycode  {color: #600; font-weight: bold; background-color: #EEE; border-radius: 25px;}
+.myjson       {color: #600; font-weight: bold; background-color: #EEE; border-radius: 25px;}
+.width600wwbw {width: 600px; word-wrap:break-word;}
