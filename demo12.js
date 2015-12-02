@@ -54,6 +54,8 @@ var cr_mn = function(train_o) {
   // I need to know obsv_v size before I create it
   for (ky in train_o) {fnum +=1}
   // I know its size now
+  // I should create train_data which eventually should be array of vols I feed to MN:
+  var train_data   = []
   for(i =0;i<train_o[ky].length;i++){
     var widx   = 0
     var obsv_v   = new convnetjs.Vol(1,1,fnum)
@@ -62,6 +64,7 @@ var cr_mn = function(train_o) {
         obsv.w[widx] = train_o[ky][i]
                widx += 1
       }
+    train_data.push(obsv_v)
     }
   }
 
