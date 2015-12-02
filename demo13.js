@@ -5,6 +5,24 @@ This script should help me run a MagicNet model I created.
 
 'hello'
 
+// This function should return array which lags my_a by n.
+function lagn(n,my_a) {
+  // I should get first n members:
+  var front_a = my_a.slice(0,n)
+  // I should remove last n members:
+  var back_a = my_a.slice(0,my_a.length-n) 
+  var lagn_a = front_a.concat(back_a)
+  return lagn_a
+}
+// This function should return array full of percentages built from lagn_a:
+function pctlagn(n,my_a) {
+  var pctlagn_a = []
+  var lagn_a    = lagn(n,my_a)
+  for (i=0; i<my_a.length;i++) {
+    pctlagn_a.push(100.0*(my_a[i]-lagn_a[i])/lagn_a[i])
+  }
+  return pctlagn_a
+}
 // This function should return array which leads my_a by 1:
 function lead1(my_a){
   return my_a.slice(1).concat(my_a[my_a.length-1])
