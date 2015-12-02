@@ -6,8 +6,8 @@
   var train_size  = 252*20              // 20 yrs
 
   var opts = {} 
-  /* what portion of data goes to train, 
-  in train/validation fold splits. Here, 0.7 means 70% */
+  'what portion of data goes to train, 
+  in train/validation fold splits. Here, 0.7 means 70% '
   opts.train_ratio = 0.7 
   // number of folds to evaluate per candidate:
   opts.num_folds = 4
@@ -15,8 +15,8 @@
   opts.num_candidates = 9
   // number of epochs to make through data per fold
   opts.num_epochs = 33
-  /* how many nets to average in the end for prediction? 
-  likely higher = better but slower: */
+  'how many nets to average in the end for prediction? 
+  likely higher = better but slower: '
   opts.ensemble_size = 9
 
 */
