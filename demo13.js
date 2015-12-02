@@ -35,9 +35,6 @@ function cp2label(bndry,cp_a) {
 }
 
 
-// I should see a MN object I got from JSON:
-magicNet11json
-
 // I should get prices I want to predict:
 d3.csv("/csv/GSPC.csv", cb2);
 
@@ -58,10 +55,20 @@ function cb2(error, csv_a) {
   var pctlead_a       = pctlead1(cp_a)
   var pctlead_train_a = pctlead_a.slice(train_start,train_end)
   // Now that I know pctlead_train_a, I can calculate train_median
-  var train_median = d3.median(pctlead_train_a)
-  var features_o   = cp2ftr(cp_a)
-  var labels_a     = cp2label(train_median,cp_a)
-
+  var train_median  = d3.median(pctlead_train_a)
+  var features_o    = cp2ftr(cp_a)
+  // I should get out-of-sample data ready:
+  var oos_o         = cr_oos_o(oos_start,oos_end,features_o)
+  // I should see a MN object I got from JSON:
+  var mymn          = magicNet11json
+  // I should predict oos_o using mymn:
+  var predictions_a = mn_predict(mymn, oos_o)
+  // I should compare predictions_a to labels_oos_a
+  var labels_a      = cp2label(train_median,cp_a)
+  var labels_oos_a  = labels_a.slice(oos_start,oos_end)
+  var results_o     = calc_results(predictions_a,labels_oos_a)
+  // I should see results_o:
+  results_o
   'end cb2'
 }
 
