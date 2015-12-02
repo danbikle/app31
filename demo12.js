@@ -53,7 +53,7 @@ var cr_mn = function(train_o) {
   var fnum = -1
   // I need to know obsv_v size before I create it
   for (ky in train_o) {fnum +=1}
-  // I know its size now
+  // I know its size now.
   // I should create train_data which eventually should be array of vols I feed to MN:
   var train_data   = []
   for(i =0;i<train_o[ky].length;i++){
