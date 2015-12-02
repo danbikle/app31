@@ -68,11 +68,6 @@ function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
   }
   // should be true:
   chk = ((truepos+trueneg+falsepos+falseneg) == oos_size)
-  // I should see
-  truepos
-  falsepos
-  trueneg
-  falseneg
   var pos_accuracy = 100.0 * truepos / (truepos + falsepos)
   var neg_accuracy = 100.0 * trueneg / (trueneg + falseneg)
   var     accuracy = 100.0 * (truepos + trueneg) / oos_size
@@ -95,6 +90,7 @@ function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
   results_o.falseneg     = falseneg
   results_o.pos_accuracy = pos_accuracy
   results_o.neg_accuracy = neg_accuracy
+  results_o.accuracy     = accuracy
   results_o.true_avg     = true_avg
   results_o.false_avg    = false_avg
   if (true_avg > false_avg)
