@@ -114,7 +114,7 @@ function mn_predict(mymn, oos_o){
 function cr_oos_o(oos_start,oos_end,features_o){
   oos_o = {}
   for (ky in features_o){
-    oos_o[ky] = features_o.slice(oos_start,oos_end)
+    oos_o[ky] = features_o[ky].slice(oos_start,oos_end)
   }
   return oos_o
 }
