@@ -90,11 +90,11 @@ function calc_results(predictions_a,labels_oos_a){
 }
 // This function should return array full of predictions:
 function mn_predict(mymn, oos_o){
-  var oos_size = oos_o.length
   // I should start work on obsv_v which is a volume of observations
-  var fnum = 0
-  // I need to know obsv_v size before I create it
-  for (ky in oos_o){fnum +=1}
+  var fnum = 0; oos_size = 0
+  // I need to know obsv_v size before I create it.
+  // I need to know size of oos data:
+  for (ky in oos_o){fnum +=1; oos_size = oos_o[ky].length}
   // I know its size now: fnum
   var predictions_a = []
   // Each observation should get a vol:
