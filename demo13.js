@@ -51,7 +51,7 @@ function cp2label(bndry,cp_a){
   var labels_a = pctlead.map(function(x){if (x<bndry) return 0; else return 1})
   return labels_a
 }
-function calc_results(predictions_a,labels_oos_a){
+function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
   // I should fill confusion matrix.
   var chk = (predictions_a.length == labels_oos_a.length) 
   //  chk should be true
@@ -80,9 +80,9 @@ function calc_results(predictions_a,labels_oos_a){
   var trueg_a = []; falseg_a = [];
   for (i=0;i<oos_size;i++){
     if (predictions_a[i] == 1)
-      trueg_a.push(pctlead_oos[i])
+      trueg_a.push(pctlead_oos_a[i])
     else
-      falseg_a.push(pctlead_oos[i])
+      falseg_a.push(pctlead_oos_a[i])
   }
   chk = ((trueg_a.length + falseg_a.length) == oos_size) // should be true
   var true_avg  = d3.mean(trueg_a)
@@ -167,7 +167,8 @@ function cb2(error, csv_a){
   // I should compare predictions_a to labels_oos_a
   var labels_a      = cp2label(train_median,cp_a)
   var labels_oos_a  = labels_a.slice(oos_start,oos_end)
-  var results_o     = calc_results(predictions_a,labels_oos_a)
+  var pctlead_oos_a = pctlead_a.slice(oos_start,oos_end)
+  var results_o     = calc_results(predictions_a,labels_oos_a,pctlead_oos_a)
   // I should see results_o:
   results_o
   'end cb2'
