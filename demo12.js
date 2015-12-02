@@ -81,7 +81,7 @@ var cr_mn = function(train_o) {
   setInterval(function(){ magicNet.step() })
    
   function finishedBatch() {
-    var mnjson   = magicNet.toJSON()
+    var mnjson = magicNet.toJSON()
   }
 
   return mnjson
