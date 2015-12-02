@@ -20,6 +20,14 @@ var cp2label  = function(bndry,cp_a) {
   return labels
 }
 
+// This function should create training data from features, labels:
+var cr_train_o = function(train_start,train_end,features_o,labels) {
+  train_o = {}
+  // I should get inside features_o and slice each feature
+  features_o
+
+  return train_o
+}
 // I should create a callback for d3.csv():
 var cb1 = function(err, csv_a) {
   if (err) throw err
@@ -41,6 +49,7 @@ var cb1 = function(err, csv_a) {
   var train_median = d3.median(pctlead_train)
   var features_o   = cp2ftr(cp_a)
   var labels       = cp2label(train_median,cp_a)
+  var train_o      = cr_train_o(train_start,train_end,features_o,labels);
   'cb1 done'
 }
 
