@@ -164,7 +164,7 @@ function cb2(error, csv_a){
   mymn.fromJSON(magicNet11json);
   // I should predict oos_o using mymn:
   var predictions_a = mn_predict(mymn, oos_o)
-  // I should compare predictions_a to labels_oos_a
+  // I should compare predictions_a to both labels_oos_a and pctlead_oos_a
   var labels_a      = cp2label(train_median,cp_a)
   var labels_oos_a  = labels_a.slice(oos_start,oos_end)
   var pctlead_oos_a = pctlead_a.slice(oos_start,oos_end)
