@@ -101,15 +101,16 @@ function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
 }
 // This function should help me display results_o
 function vwr(results_o){
-  var cell00 = 'Opinion:';             cell01 = results_o.opinion
-  var cell10 = 'True Positive Count:'; cell11 = results_o.truepos
-  var cell20 = 'True Negative Count:'; cell21 = results_o.trueneg
+  var cell00 = 'Opinion:';              cell01 = results_o.opinion
+  var cell10 = 'True Positive Count:';  cell11 = results_o.truepos
+  var cell20 = 'True Negative Count:';  cell21 = results_o.trueneg
   var cell30 = 'False Positive Count:'; cell31 = results_o.falsepos
   var cell40 = 'False Negative Count:'; cell41 = results_o.falseneg
   var cell50 = 'Positive Accuracy:';    cell51 = results_o.pos_accuracy
   var cell60 = 'Negative Accuracy:';    cell61 = results_o.neg_accuracy
-
-
+  var cell70 = 'Accuracy:';             cell71 = results_o.accuracy
+  var cell80 = 'Avg Gain of True Predictions:' ; cell81 = results_o.true_avg
+  var cell90 = 'Avg Gain of False Predictions:'; cell91 = results_o.true_avg
   var tr  = '<tr>'
   var td  = '<td>'
   var tdc = '</td>'
@@ -121,9 +122,11 @@ function vwr(results_o){
   var row4   = tr+td+cell40+tdc+td+cell41+tdc+trc
   var row5   = tr+td+cell50+tdc+td+cell51+tdc+trc
   var row6   = tr+td+cell60+tdc+td+cell61+tdc+trc
-  var rows   = row0+row1+row2+row3+row4+row5+row6
+  var row7   = tr+td+cell70+tdc+td+cell71+tdc+trc
+  var row8   = tr+td+cell80+tdc+td+cell81+tdc+trc
+  var row9   = tr+td+cell90+tdc+td+cell91+tdc+trc
+  var rows   = row0+row1+row2+row3+row4+row5+row6+row7+row8+row9
   d3.select('#myresults .results_o').html(rows)
-
 }
 // This function should return array full of predictions:
 function mn_predict(mymn, oos_o){
