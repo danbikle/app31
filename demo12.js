@@ -31,7 +31,6 @@ function cb1(err, csv_a) {
   var train_o      = cr_train_o(train_start,train_end,features_o,labels_a);
   // I should use train_o to create and train a new magicNet
   cr_mn(train_o)
-  'cb1 done'
 }
 
 // This function should create training data from features, labels:
