@@ -101,13 +101,16 @@ function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
 }
 // This function should help me display results_o
 function vwr(results_o){
+  var cell00 = 'Opinion:';             cell01 = results_o.opinion
+  var cell10 = 'True Positive Count:'; cell11 = results_o.truepos
+
   var tr  = '<tr>'
   var td  = '<td>'
   var tdc = '</td>'
   var trc = '</tr>'
-  var cell00 = 'Opinion:'; cell01 = results_o.opinion
   var row0   = tr+td+cell00+tdc+td+cell01+tdc+trc
-  var rows   = row0
+  var row1   = tr+td+cell10+tdc+td+cell11+tdc+trc
+  var rows   = row0+row1
   d3.select('#myresults .results_o').html(rows)
 
 }
