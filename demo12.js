@@ -93,12 +93,12 @@ function cr_mn(train_o) {
   Every call trains all candidates in current batch on one example: */
   setInterval(function(){ magicNet.step() })
   function finishedBatch() {
+    // Now that I am done, I should remove spinner:
+    d3.select('#a_spinner').remove()
     mnjson = magicNet.toJSON()
     var mnjson_s = JSON.stringify(mnjson)
     var putjson_here = d3.select('#json1')
     putjson_here.html(mnjson_s)
-    // Now that I am done, I should remove spinner:
-    d3.select('#a_spinner').remove
   }
 }
 
