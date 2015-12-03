@@ -194,10 +194,8 @@ function cb2(error, csv_a){
   var labels_oos_a  = labels_a.slice(oos_start,oos_end)
   var pctlead_oos_a = pctlead_a.slice(oos_start,oos_end)
   var results_o     = calc_results(predictions_a,labels_oos_a,pctlead_oos_a)
-
   // I should see results_o:
   vwr(results_o)
-  
   // I should show the JSON I use to build mymn:
   d3.select('#json1').html('var magicNet11json = '+JSON.stringify(magicNet11json))
   'end cb2'
