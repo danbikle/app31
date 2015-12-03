@@ -110,7 +110,7 @@ function vwr(results_o){
   var cell60 = 'Negative Accuracy:';    cell61 = results_o.neg_accuracy
   var cell70 = 'Accuracy:';             cell71 = results_o.accuracy
   var cell80 = 'Avg Gain of True Predictions:' ; cell81 = results_o.true_avg
-  var cell90 = 'Avg Gain of False Predictions:'; cell91 = results_o.true_avg
+  var cell90 = 'Avg Gain of False Predictions:'; cell91 = results_o.false_avg
   var tr  = '<tr>'
   var td  = '<td>'
   var tdc = '</td>'
