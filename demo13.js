@@ -103,6 +103,12 @@ function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
 function vwr(results_o){
   var cell00 = 'Opinion:';             cell01 = results_o.opinion
   var cell10 = 'True Positive Count:'; cell11 = results_o.truepos
+  var cell20 = 'True Negative Count:'; cell21 = results_o.trueneg
+  var cell30 = 'False Positive Count:'; cell31 = results_o.falsepos
+  var cell40 = 'False Negative Count:'; cell41 = results_o.falseneg
+  var cell50 = 'Positive Accuracy:';    cell51 = results_o.pos_accuracy
+  var cell60 = 'Negative Accuracy:';    cell61 = results_o.neg_accuracy
+
 
   var tr  = '<tr>'
   var td  = '<td>'
@@ -110,7 +116,12 @@ function vwr(results_o){
   var trc = '</tr>'
   var row0   = tr+td+cell00+tdc+td+cell01+tdc+trc
   var row1   = tr+td+cell10+tdc+td+cell11+tdc+trc
-  var rows   = row0+row1
+  var row2   = tr+td+cell20+tdc+td+cell21+tdc+trc
+  var row3   = tr+td+cell30+tdc+td+cell31+tdc+trc
+  var row4   = tr+td+cell40+tdc+td+cell41+tdc+trc
+  var row5   = tr+td+cell50+tdc+td+cell51+tdc+trc
+  var row6   = tr+td+cell60+tdc+td+cell61+tdc+trc
+  var rows   = row0+row1+row2+row3+row4+row5+row6
   d3.select('#myresults .results_o').html(rows)
 
 }
