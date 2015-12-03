@@ -105,7 +105,7 @@ function vwr(results_o){
   var td  = '<td>'
   var tdc = '</td>'
   var trc = '</tr>'
-  var cell00 = 'Opinion'; cell01 = results_o.opinion
+  var cell00 = 'Opinion:'; cell01 = results_o.opinion
   var row0   = tr+td+cell00+tdc+td+cell01+tdc+trc
   var rows   = row0
   d3.select('#myresults .results_o').html(rows)

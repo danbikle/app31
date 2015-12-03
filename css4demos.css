@@ -5,3 +5,5 @@ a:hover       {color: #BB0000;background-color: #EEEEEE; }
 #show_mycode  {color: #600; font-weight: bold; background-color: #EEE; border-radius: 25px;}
 .myjson       {color: #600; font-weight: bold; background-color: #EEE; border-radius: 25px;}
 .width600wwbw {width: 600px; word-wrap:break-word;}
+.zebra_it table tr:nth-child(odd) {background-color: #DDDDDD;}
+table.results_o {color: 004400;}
