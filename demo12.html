@@ -59,6 +59,16 @@
     <br />
     <br />
     After an hour or 4, the  MagicNet model will be built and it will be listed below in JSON format:
+    <div id='a_spinner'>
+      <style>
+        #a_spinner {animation: blinker 1s linear infinite;}
+        @keyframes blinker {50% { opacity: 0.0; }}
+      </style>
+      Learning...
+      <br />
+      <img src='/spinner.gif' />
+    </div>
+
     <div class='width600wwbw'>
       <pre><code class='myjson' id='json1'></code></pre>
     </div>
