@@ -99,6 +99,18 @@ function calc_results(predictions_a,labels_oos_a,pctlead_oos_a){
     results_o.opinion    = 'bad'
   return results_o
 }
+// This function should help me display results_o
+function vwr(results_o){
+  var tr  = '<tr>'
+  var td  = '<td>'
+  var tdc = '</td>'
+  var trc = '</tr>'
+  var cell00 = 'Opinion'; cell01 = results_o.opinion
+  var row0   = tr+td+cell00+tdc+td+cell01+tdc+trc
+  var rows   = row0
+  d3.select('#myresults .results_o').html(rows)
+
+}
 // This function should return array full of predictions:
 function mn_predict(mymn, oos_o){
   // I should start work on obsv_v which is a volume of observations
@@ -165,9 +177,10 @@ function cb2(error, csv_a){
   var labels_oos_a  = labels_a.slice(oos_start,oos_end)
   var pctlead_oos_a = pctlead_a.slice(oos_start,oos_end)
   var results_o     = calc_results(predictions_a,labels_oos_a,pctlead_oos_a)
+
   // I should see results_o:
-  results_o
-  d3.select('#myresults').html(results_o.opinion)
+  vwr(results_o)
+  
   // I should show the JSON I use to build mymn:
   d3.select('#json1').html('var magicNet11json = '+JSON.stringify(magicNet11json))
   'end cb2'
